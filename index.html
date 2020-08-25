@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack card game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <main class="table">
+        <div class="table__croupier">
+            <div class="table__card-box">
+
+                <div class="card card--rotated">
+                    <div class="card__face card__face--front">
+                        <img src="./img/10C.png" alt="" id="10C" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="table__player">
+            <div class="table__card-box">
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
+                    </div>
+                    <div class="card__face card__face--back"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class="card card--rotated">
+                <div class="card__face card__face--back card--shadow"></div>
+            </div>
+        </div>
+    </main>
+    <section class="game-controller">
+        <div class="bets">
+            <div class="bets__form">
+                <div class="bets__current-box">
+                    <p class="bets__desc">current cash: </p><span class="bets__value">500</span>
+                </div>
+                <div class="bets__current-box">
+                    <p class="bets__desc">current bet: </p><span class="bets__value">---</span>
+                </div>
+                <div class="bets__btn-box">
+                    <div class="bets__btn bets__btn--accept">accept</div>
+                    <div class="bets__btn bets__btn--all-in">all in</div>
+                </div>
+            </div>
+        </div>
+        <div class="action">
+            <div class="action__btn">
+                <div class="line">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512;" xml:space="preserve" class="icon icon--card">
+                        <g>
+                            <path d="M376,0H136c-22.056,0-40,17.944-40,40v432c0,22.056,17.944,40,40,40h240c22.056,0,40-17.944,40-40V40
+               C416,17.944,398.056,0,376,0z M400,472c0,13.234-10.766,24-24,24H136c-13.234,0-24-10.766-24-24V40c0-13.233,10.766-24,24-24h240
+               c13.234,0,24,10.767,24,24V472z" />
+                            <path d="M376,87.998V48c0-4.418-3.582-8-8-8h-39.997c-0.002,0-0.003,0-0.005,0h-39.995c-0.002,0-0.003,0-0.005,0h-39.995
+               c-0.002,0-0.003,0-0.005,0H144c-4.418,0-8,3.582-8,8v15.998c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995
+               c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995
+               c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005V464
+               c0,4.418,3.582,8,8,8h224c4.418,0,8-3.582,8-8v-15.998c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995
+               c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005
+               v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005V88.002
+               C376,88.001,376,87.999,376,87.998z M307.314,456L152,300.687v-17.373L324.686,456H307.314z M267.313,456L152,340.687v-17.373
+               L284.686,456H267.313z M227.313,456L152,380.687v-17.373L244.687,456H227.313z M187.313,456L152,420.687v-17.373L204.687,456
+               H187.313z M152,203.313l208,208v17.373l-208-208V203.313z M152,180.687v-17.373l208,208v17.373L152,180.687z M152,140.687v-17.373
+               l208,208v17.373L152,140.687z M152,100.687V83.313l208,208v17.373L152,100.687z M204.686,56L360,211.313v17.373L187.314,56H204.686
+               z M227.314,56h17.373L360,171.313v17.373L227.314,56z M267.313,56h17.373L360,131.313v17.373L267.313,56z M307.313,56h17.373
+               L360,91.313v17.373L307.313,56z M360,68.687L347.313,56H360V68.687z M164.686,56L360,251.313v17.373l-208-208V56H164.686z
+                M152,443.313L164.687,456H152V443.313z M347.314,456L152,260.687v-17.373l208,208V456H347.314z" />
+                            <line x1="20" y1="512" x2="492" y2="0" stroke="red" stroke-width="25" />
+                        </g>
+
+                    </svg>
+                </div>
+
+                <p class="btn__txt">stand</p>
+            </div>
+            <div class="action__btn">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                    style="enable-background:new 0 0 512 512;" xml:space="preserve" class="icon icon--card">
+                    <g>
+                        <path d="M376,0H136c-22.056,0-40,17.944-40,40v432c0,22.056,17.944,40,40,40h240c22.056,0,40-17.944,40-40V40
+               C416,17.944,398.056,0,376,0z M400,472c0,13.234-10.766,24-24,24H136c-13.234,0-24-10.766-24-24V40c0-13.233,10.766-24,24-24h240
+               c13.234,0,24,10.767,24,24V472z" />
+                        <path d="M376,87.998V48c0-4.418-3.582-8-8-8h-39.997c-0.002,0-0.003,0-0.005,0h-39.995c-0.002,0-0.003,0-0.005,0h-39.995
+               c-0.002,0-0.003,0-0.005,0H144c-4.418,0-8,3.582-8,8v15.998c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995
+               c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995
+               c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005v39.995c0,0.001,0,0.003,0,0.005V464
+               c0,4.418,3.582,8,8,8h224c4.418,0,8-3.582,8-8v-15.998c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995
+               c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005
+               v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005v-39.995c0-0.001,0-0.003,0-0.005V88.002
+               C376,88.001,376,87.999,376,87.998z M307.314,456L152,300.687v-17.373L324.686,456H307.314z M267.313,456L152,340.687v-17.373
+               L284.686,456H267.313z M227.313,456L152,380.687v-17.373L244.687,456H227.313z M187.313,456L152,420.687v-17.373L204.687,456
+               H187.313z M152,203.313l208,208v17.373l-208-208V203.313z M152,180.687v-17.373l208,208v17.373L152,180.687z M152,140.687v-17.373
+               l208,208v17.373L152,140.687z M152,100.687V83.313l208,208v17.373L152,100.687z M204.686,56L360,211.313v17.373L187.314,56H204.686
+               z M227.314,56h17.373L360,171.313v17.373L227.314,56z M267.313,56h17.373L360,131.313v17.373L267.313,56z M307.313,56h17.373
+               L360,91.313v17.373L307.313,56z M360,68.687L347.313,56H360V68.687z M164.686,56L360,251.313v17.373l-208-208V56H164.686z
+                M152,443.313L164.687,456H152V443.313z M347.314,456L152,260.687v-17.373l208,208V456H347.314z" />
+                    </g>
+                </svg>
+                <p class="btn__txt">hit</p>
+            </div>
+            <div class="action__btn">
+
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 430.305 430.305"
+                    style="enable-background:new 0 0 430.305 430.305;" xml:space="preserve" class="icon icon--double">
+                    <path id="XMLID_954_" d="M306.196,110.613L413.84,2.97c3.516-3.515,9.213-3.515,12.729,0c3.515,3.515,3.515,9.213,0,12.728
+       L318.925,123.341c-1.758,1.758-4.061,2.636-6.364,2.636s-4.606-0.878-6.364-2.636C302.681,119.826,302.681,114.128,306.196,110.613z
+        M411.168,75.783L354,132.951c-3.515,3.515-3.515,9.213,0,12.728c1.758,1.758,4.061,2.636,6.364,2.636
+       c2.303,0,4.606-0.879,6.364-2.636l57.168-57.167c3.515-3.515,3.515-9.213,0-12.728S414.684,72.269,411.168,75.783z M288.801,82.955
+       c2.304,0,4.606-0.879,6.364-2.636l57.167-57.167c3.515-3.515,3.515-9.213,0-12.728c-3.516-3.515-9.213-3.515-12.729,0
+       l-57.167,57.167c-3.515,3.515-3.515,9.213,0,12.728C284.194,82.076,286.497,82.955,288.801,82.955z M430.305,292.401
+       c0,37.583-15.127,71.695-39.615,96.573c-0.224,0.287-1.272,1.335-1.559,1.559c-24.878,24.488-58.989,39.613-96.572,39.613
+       c-37.573,0-71.681-15.121-96.558-39.599c-0.293-0.228-1.364-1.299-1.593-1.593c-24.435-24.833-39.544-58.866-39.596-96.362
+       c-0.001-0.064-0.001-0.322,0-0.386c0.052-37.492,15.16-71.522,39.59-96.354c0.23-0.296,0.481-0.581,0.753-0.854
+       c0.272-0.272,0.558-0.522,0.854-0.752c24.876-24.472,58.981-39.591,96.55-39.591c37.578,0,71.687,15.123,96.564,39.605
+       c0.289,0.226,1.347,1.284,1.573,1.573C415.179,220.711,430.305,254.823,430.305,292.401z M383.318,214.367l-19.313,19.313
+       c11.368,13.807,18.818,30.949,20.639,49.719h27.327C410.01,257.137,399.541,233.209,383.318,214.367z M301.559,200.316
+       c18.767,1.82,35.911,9.271,49.717,20.637l19.313-19.313c-18.842-16.223-42.768-26.689-69.03-28.65V200.316z M214.526,201.641
+       l19.313,19.314c13.806-11.366,30.953-18.819,49.72-20.639v-27.327C257.297,174.95,233.368,185.419,214.526,201.641z M173.148,283.4
+       h27.327c1.819-18.767,9.271-35.911,20.637-49.717l-19.313-19.314C185.576,233.211,175.108,257.137,173.148,283.4z M201.798,370.432
+       l19.314-19.314c-11.366-13.806-18.817-30.951-20.637-49.718h-27.327C175.108,327.663,185.575,351.59,201.798,370.432z
+        M283.559,384.485c-18.77-1.82-35.913-9.271-49.72-20.64l-19.314,19.314c18.843,16.222,42.771,26.692,69.034,28.652V384.485z
+        M293.08,366.918c40.669-0.278,73.701-33.301,73.996-73.966c-0.011-0.183-0.011-0.92,0-1.102
+       c-0.295-40.668-33.331-73.691-74.004-73.965c-0.34,0.019-0.686,0.019-1.025,0c-40.697,0.274-73.75,33.342-74.004,74.045
+       c0.008,0.156,0.008,0.787,0,0.942c0.254,40.7,33.302,73.768,73.996,74.046C292.383,366.898,292.736,366.898,293.08,366.918z
+        M370.591,383.162l-19.313-19.313c-13.806,11.366-30.951,18.817-49.718,20.637v27.326
+       C327.822,409.852,351.749,399.384,370.591,383.162z M411.97,301.4h-27.327c-1.819,18.77-9.27,35.914-20.639,49.72l19.314,19.313
+       C399.542,351.592,410.01,327.663,411.97,301.4z M151.965,220.705c0.305,4.961-3.471,9.23-8.432,9.535
+       c-2.01,0.124-3.902,0.184-5.786,0.184c-22.272,0-42.735-7.914-58.72-21.073l-19.292,19.292
+       c18.996,16.381,43.195,26.935,69.858,28.726c4.959,0.333,8.709,4.623,8.376,9.583c-0.319,4.754-4.275,8.397-8.971,8.397
+       c-0.203,0-0.406-0.007-0.612-0.021c-33.242-2.233-64.251-16.325-87.829-39.816c-0.072-0.067-2.324-2.361-3.256-3.353
+       c-24.01-25.574-37.252-58.972-37.301-94.062c-0.001-0.064-0.001-0.322,0-0.386c0.052-37.496,15.162-71.528,39.597-96.361
+       c0.229-0.293,1.298-1.363,1.591-1.591c24.877-24.477,58.984-39.599,96.558-39.599c35.16,0,68.634,13.247,94.254,37.301
+       c1.004,0.942,3.263,3.161,3.319,3.221c23.51,23.583,37.616,54.606,39.851,87.865c0.333,4.959-3.417,9.25-8.376,9.583
+       c-4.982,0.336-9.25-3.417-9.583-8.376c-1.792-26.663-12.346-50.863-28.728-69.86l-19.291,19.292
+       c13.163,15.985,21.073,36.444,21.073,58.719c0,1.862-0.063,3.811-0.186,5.792c-0.308,4.962-4.572,8.736-9.54,8.426
+       c-4.961-0.308-8.732-4.579-8.425-9.54c0.1-1.612,0.15-3.186,0.15-4.678c0-40.917-33.146-74.237-73.999-74.517
+       c-0.344,0.02-0.697,0.02-1.041,0c-40.689,0.279-73.733,33.335-73.996,74.028c0.008,0.162,0.008,0.815,0,0.977
+       c0.264,40.866,33.591,74.031,74.518,74.031c1.512,0,3.044-0.049,4.683-0.149C147.371,211.96,151.659,215.743,151.965,220.705z
+        M146.746,45.819c18.767,1.82,35.913,9.271,49.719,20.637l19.282-19.283c-18.898-16.255-42.856-26.712-69.001-28.678V45.819z
+        M59.714,47.145l19.313,19.313c13.806-11.366,30.952-18.818,49.719-20.639V18.493C102.483,20.454,78.555,30.923,59.714,47.145z
+        M18.336,128.904h27.326c1.819-18.767,9.271-35.912,20.638-49.718L46.985,59.874C30.763,78.715,20.296,102.641,18.336,128.904z
+        M66.3,196.622c-11.366-13.806-18.818-30.952-20.638-49.718H18.338c1.966,26.145,12.423,50.104,28.678,69.001L66.3,196.622z
+        M192.566,137.904c0,13.57-4.997,26.594-14.071,36.671c-10.383,11.534-25.235,18.149-40.749,18.149
+       c-30.228,0-54.819-24.592-54.819-54.821c0-30.228,24.592-54.82,54.819-54.82C167.974,83.084,192.566,107.676,192.566,137.904z
+        M174.566,137.904c0-20.303-16.518-36.82-36.82-36.82s-36.819,16.517-36.819,36.82c0,20.303,16.517,36.821,36.819,36.821
+       c10.419,0,20.396-4.444,27.371-12.193C171.211,155.764,174.566,147.019,174.566,137.904z M347.38,292.4
+       c0,13.568-4.997,26.591-14.069,36.67c-10.389,11.536-25.241,18.151-40.751,18.151c-30.228,0-54.82-24.593-54.82-54.821
+       c0-30.228,24.593-54.82,54.82-54.82S347.38,262.172,347.38,292.4z M329.38,292.4c0-20.303-16.518-36.82-36.82-36.82
+       s-36.82,16.517-36.82,36.82c0,20.303,16.518,36.821,36.82,36.821c10.417,0,20.395-4.445,27.374-12.194
+       C326.024,310.26,329.38,301.513,329.38,292.4z" />
+                </svg>
+                <p class="btn__txt">double</p>
+            </div>
+        </div>
+    </section>
+    <div class="background-logo">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 640 250">
+
+            <path class="snippet__left-back" d="M 120 165 C 60 170, 0 150, 0 150 V 90 C 0 90, 60 110, 120 100" />
+
+            <path class="snippet__left" d="M 70 65 V 125 C 95 155, 110 165, 120 165 V 115" />
+
+            <path class="snippet__right-back"
+                d="M 520 165 C 580 170, 640 150, 640 150 V 90 C 640 90, 580 110, 520 100 " />
+
+            <path class="snippet__right" d="M 570 65 V 125 C 545 155, 530 165, 520 165 V 115" />
+
+            <path class="snippet__center"
+                d="M 70 65 L 70 125 C 120 175, 520 175, 570 125 V 65 C 520 125, 120 125, 70 65" />
+
+            <path id="my_path-1" class="line" d="M 0 10 C 100 100, 540 100, 640 10" />
+            <path id="my_path-2" class="line" d="M 0 80 C 100 170, 540 170, 640 80" />
+            <path id="my_path-3" class="line" d="M 0 150 C 100 240, 540 240, 640 150" />
+
+            <text class="text--1" x="52.5%">
+                <textPath class="text1" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#my_path-1">blackjack
+                    pays 2 to 1
+                </textPath>
+            </text>
+            <text class="text--2" x="52.5%">
+                <textPath class="text2" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#my_path-2">
+                    blackjack game
+                </textPath>
+            </text>
+            <text class="text--3" x="52.5%">
+                <textPath class="text2" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#my_path-3">
+                    try your luck
+                </textPath>
+            </text>
+        </svg>
+    </div>
+    <div class="rules active-rules">
+        <div class="rules__close-btn">&nbsp;</div>
+        <h1 class="rules__title rules__title--primary">blackjack rules</h1>
+        <h2 class="rules__title rules__title--secondary">card values</h2>
+        <p class="rules__paragraph">Cards 2-10 are worth the value of the number on the face of the card. Numbered
+            cards
+            are worth the corresponding number indicated on the card. Face cards (those with pictures on them) are
+            worth
+            10, except for the Ace, which is worth 1 or 11. A picture combined with an Ace is Blackjack (a value of
+            21).
+        </p>
+        <h2 class="rules__title rules__title--secondary">stand/hit/double</h2>
+        <p class="rules__paragraph">Stand means that player is not asking for another cards and it's croupier turn.
+        </p>
+        <p class="rules__paragraph">Hit means that player is asking for another card (one at the time) to get closer to
+            21. Maximum cards that player can get is 8.
+        </p>
+        <p class="rules__paragraph">Double means that player is doubling his bet and after that he can get only one more
+            card. When lost, player losses his double bet.
+        </p>
+        <h2 class="rules__title rules__title--secondary">betting</h2>
+        <p class="rules__paragraph">Before the game begins, player must place a bet.
+        </p>
+        <p class="rules__paragraph">The most important blackjack rule is simple: beat the croupier’s hand without
+            going
+            over 21. If you get 21 points exactly on the deal, that is called a “blackjack.” When you’re dealt a
+            blackjack 21, pay out is 2:1.
+        </p>
+        <h2 class="rules__title rules__title--secondary">winning and loosing</h2>
+        <p class="rules__paragraph">When player gets blackjack he immidiately wins 2:1 his bet, if player has more than
+            21, croupier won. If noone has blackjack, at the end of a game player's and croupier's cards are compared
+            and wins person with higher value or croupier pays back bet if there s a draw.
+        </p>
+        <h2 class="rules__title rules__title--secondary">how to play</h2>
+        <p class="rules__paragraph">First of all, make your bet(by clicking character plus and minus ), then accept it.
+            All in means that you are betting all cash that you have.
+        </p>
+        <p class="rules__paragraph">After getting your cards you have to choose if you are taking another card(hit
+            button), checking your cards against croupier(by hitting stand) or asking doubling your bet and taking just
+            one more card(double button).
+        </p>
+        <p class="rules__paragraph">Now it's croupier turn. Croupier has some rules that he needs to follow. Croupier
+            must take another card when has less than 16 or stand when got 17 or more.
+        </p>
+        <p class="rules__paragraph">Winner is person which is closer to 21 or got blackjack.
+        </p>
+        <h2 class="rules__title rules__title--secondary">rules in the nutshell</h2>
+        <p class="rules__paragraph">Each person can get maximum 8 cards.</p>
+        <p class="rules__paragraph">If player has 21, he immidiately wins 2:1 his bet.</p>
+        <p class="rules__paragraph">If player has more than 21, croupier immidiately wins.</p>
+        <p class="rules__paragraph">Croupier
+            must take another card when has less than 16 or stand when got 17 or more.</p>
+        <p class="rules__paragraph">Normal pay out for won game: 1 to 1. </p>
+    </div>
+</body>
+
+</html>
