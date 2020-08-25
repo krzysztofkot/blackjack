@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif; }
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  height: 100vh;
+  padding: 3rem;
+  justify-content: center;
+  background-image: linear-gradient(to right bottom, #2b9348 0%, #007f5f 100%); }
+
+.table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1; }
+
+.game-controller {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.3rem;
+  width: 80rem; }
+
+.card-deck {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin: 1.1rem 0 0 2rem; }
+
+.table__card-box {
+  display: flex;
+  perspective: 700px;
+  justify-content: center;
+  min-width: 78.64rem; }
+
+.card {
+  position: relative;
+  border: 1px solid black;
+  width: 9.83em;
+  height: 15rem;
+  border-radius: 1rem;
+  transform-style: preserve-3d;
+  transition: all 0.3s linear; }
+  .card--rotated {
+    transform: rotateY(180deg); }
+  .card--shadow {
+    box-shadow: 0 0 0 1px black, 2px -2px 0 2px white, 2px -2px 0 3px black, 5px -5px 0 2px white, 5px -5px 0 3px black, 8px -8px 0 2px white, 8px -8px 0 3px black, 11px -11px 2px 2px rgba(0, 0, 0, 0.5); }
+  .card__picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+  .card__face {
+    border-radius: 1rem;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; }
+    .card__face--front {
+      width: 100%;
+      height: 100%; }
+    .card__face--back {
+      border: 5px solid white;
+      background-color: white;
+      background-image: repeating-linear-gradient(to bottom right, transparent 0%, transparent 2%, red 2%, red 3%), repeating-linear-gradient(to bottom left, transparent 0%, transparent 2%, red 2%, red 3%);
+      transform: rotateY(-180deg); }
+      .card__face--back::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: .5rem;
+        box-shadow: inset 0 0 0 2px red; }
+
+.bets {
+  width: 30rem; }
+  .bets__form {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 1.4rem; }
+  .bets__current-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+    border: 1px solid black;
+    padding: 1.1rem;
+    border-radius: 5px; }
+    .bets__current-box:not(:last-child) {
+      margin-bottom: .3rem; }
+  .bets__btn-box {
+    display: flex;
+    cursor: pointer; }
+  .bets__btn {
+    flex: 1;
+    text-align: center;
+    padding: 1.3rem 0;
+    font-size: 2.2rem;
+    box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.8);
+    border-radius: 5px; }
+    .bets__btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8); }
+    .bets__btn:not(:last-child) {
+      margin-right: 0.5rem; }
+    .bets__btn--accept {
+      background-color: #CED4DA; }
+    .bets__btn--all-in {
+      background-color: black;
+      color: white; }
+  .bets__value {
+    width: 15rem;
+    text-align: right; }
+
+.action {
+  display: flex;
+  justify-content: space-around;
+  width: 30rem;
+  align-items: center; }
+  .action__btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
+    height: 11rem;
+    border-radius: 5px;
+    color: #495057;
+    background-color: #CED4DA;
+    background-color: lightblue;
+    box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.8);
+    border: 1px solid black;
+    cursor: pointer; }
+    .action__btn:active {
+      box-shadow: inset 0rem 0rem 3rem #495057, 0 0 0.5rem rgba(0, 0, 0, 0.8);
+      transform: translateY(1px); }
+    .action__btn__txt {
+      text-transform: uppercase;
+      margin-top: .6rem;
+      font-size: 1.5rem; }
+
+.icon {
+  fill: #495057; }
+  .icon--card {
+    width: 8rem; }
+  .icon--double {
+    width: 7rem; }
+
+.background-logo {
+  position: absolute;
+  top: 37.8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1; }
+
+.logo {
+  height: 35rem; }
+  @media only screen and (max-width: 1024px) {
+    .logo {
+      height: 30rem; } }
+  @media only screen and (max-width: 900px) {
+    .logo {
+      height: 25rem; } }
+  @media only screen and (max-width: 600px) {
+    .logo {
+      height: 20rem; } }
+
+.line {
+  fill: transparent; }
+
+.text--1, .text--2, .text--3 {
+  text-anchor: middle;
+  font-size: 40px;
+  text-transform: uppercase; }
+
+.snippet__center {
+  fill: greenyellow;
+  stroke: green; }
+
+.snippet__left, .snippet__right {
+  fill: yellowgreen;
+  stroke: green;
+  stroke-width: 2px; }
+
+.snippet__left-back {
+  stroke: green;
+  stroke-width: 2px;
+  fill: greenyellow; }
+
+.snippet__right-back {
+  stroke: green;
+  stroke-width: 2px;
+  fill: greenyellow; }
+
+.rules {
+  padding: 2.2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background-image: linear-gradient(to right bottom, #2b9348 0%, #007f5f 100%); }
+  .rules__title {
+    text-align: center;
+    text-transform: uppercase; }
+    .rules__title--primary {
+      font-size: 2.5rem;
+      margin-bottom: 1.6rem; }
+    .rules__title--secondary {
+      font-size: 1.9rem;
+      margin-bottom: .8rem; }
+  .rules__paragraph {
+    font-size: 1.4rem;
+    margin-bottom: .3rem; }
+  .rules__close-btn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer; }
+    .rules__close-btn::after, .rules__close-btn::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      background-color: white; }
+    .rules__close-btn::after {
+      transform: translate(-50%, -50%) rotate(45deg); }
+    .rules__close-btn::before {
+      transform: translate(-50%, -50%) rotate(-45deg); }
+  .rules__btn {
+    cursor: pointer;
+    padding: 2rem;
+    border: 1px solid #000;
+    margin: 4rem 0;
+    font-weight: bold;
+    background-color: lightblue; }
+
+.active-rules {
+  transform: translateX(-100%); }

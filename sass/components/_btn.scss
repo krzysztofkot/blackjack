@@ -1,0 +1,49 @@
+.action {
+    display: flex;
+    justify-content: space-around;
+    width: 30rem;
+    align-items: center;
+
+    &__btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 9rem;
+        height: 11rem;
+        border-radius: 5px;
+        color: $btn-color-2;
+        background-color: $btn-color-1;
+        background-color: $color-lightblue;
+        box-shadow: $shadow-big;
+        border: 1px solid black;
+        cursor: pointer;
+
+
+        &:active {
+            box-shadow: inset 0rem 0rem 3rem $btn-color-2, $shadow-small;
+            transform: translateY(1px);
+        }
+
+
+        &__txt {
+            text-transform: uppercase;
+            margin-top: .6rem;
+            font-size: 1.5rem;
+        }
+
+    }
+}
+
+
+.icon {
+    fill: $btn-color-2;
+
+    &--card {
+        width: 8rem;
+    }
+
+    &--double {
+        width: 7rem;
+    }
+}

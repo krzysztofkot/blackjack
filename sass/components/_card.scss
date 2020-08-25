@@ -1,0 +1,77 @@
+//card styling
+.card-deck {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin: 1.1rem 0 0 2rem;
+}
+
+.table__card-box {
+    display: flex;
+    perspective: 700px;
+    justify-content: center;
+    min-width: 78.64rem;
+
+}
+
+.card {
+    position: relative;
+    border: 1px solid black;
+    width: 9.83em;
+    height: 15rem;
+    border-radius: 1rem;
+    transform-style: preserve-3d;
+    transition: all 0.3s linear;
+
+    &--rotated {
+        transform: rotateY(180deg);
+    }
+
+    &--shadow {
+        box-shadow:
+            0 0 0 1px black,
+            2px -2px 0 2px white,
+            2px -2px 0 3px black,
+            5px -5px 0 2px white,
+            5px -5px 0 3px black,
+            8px -8px 0 2px white,
+            8px -8px 0 3px black,
+            11px -11px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    &__picture {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+    }
+
+    &__face {
+        border-radius: 1rem;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+
+        &--front {
+            width: 100%;
+            height: 100%;
+        }
+
+        &--back {
+            border: 5px solid white;
+            background-color: white;
+            background-image: repeating-linear-gradient(to bottom right, transparent 0%, transparent 2%, red 2%, red 3%), repeating-linear-gradient(to bottom left, transparent 0%, transparent 2%, red 2%, red 3%);
+            transform: rotateY(-180deg);
+
+            &::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-radius: .5rem;
+                box-shadow: inset 0 0 0 2px red;
+            }
+        }
+    }
+}

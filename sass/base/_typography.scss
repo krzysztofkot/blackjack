@@ -1,0 +1,22 @@
+.table {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+
+    // &__croupier {
+    //     // background-color: yellowgreen;
+    // }
+
+    // &__player {
+    //     // background-color: pink;
+    // }
+}
+
+.game-controller {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.3rem;
+    width: 80rem;
+}
