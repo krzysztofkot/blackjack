@@ -4,19 +4,49 @@
     box-sizing: border-box;
 }
 
+:root {
+    --card-height: 15rem;
+    --card-width: calc(var(--card-height) * 0.65533);
+
+
+
+    @media only screen and (min-width: 1024px) and (orientation: portrait) {
+        --card-height: 25rem;
+    }
+
+    @media only screen and (min-width: 750px) and (orientation: portrait) {
+        --card-height: 20rem;
+    }
+
+    @media only screen and (max-width: 530px) and (orientation: portrait) {
+        --card-height: 11rem;
+    }
+
+}
+
 html {
     font-size: 62.5%;
     font-family: 'Roboto', sans-serif;
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 45%;
+    }
+
+    @media only screen and (max-width: 660px) and (orientation: landscape) {
+        font-size: 33%;
+    }
 }
 
 body {
+    box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 100%;
     height: 100vh;
-    padding: 3rem;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    overflow: hidden;
     justify-content: center;
     background-image: linear-gradient(to right bottom,
             $bg-color-2 0%,
