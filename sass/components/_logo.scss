@@ -1,30 +1,38 @@
-.background-logo {
+.background {
     position: absolute;
-    top: 37.8%;
+    width: 70%;
+    height: 80%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
-}
+    // background-color: red;
 
-.logo {
-    height: 35rem;
+    &__box {
 
-    @media only screen and(max-width: 1024px) {
-        height: 30rem;
+        position: absolute;
+        height: 0;
+        width: 100%;
+        padding: 0;
+        padding-bottom: 100%;
+        top: 35%;
+        transform: translateY(-50%);
+
+        @media only screen and (orientation: portrait) {
+            top: 22.5%;
+        }
     }
 
-    @media only screen and(max-width: 900px) {
-        height: 25rem;
-    }
+    &__logo {
 
-    @media only screen and(max-width: 600px) {
-        height: 20rem;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
     }
 }
 
-.line {
-    fill: transparent;
-}
 
 .text {
 
@@ -66,4 +74,8 @@
             fill: greenyellow;
         }
     }
+}
+
+.line {
+    fill: transparent;
 }
