@@ -6,10 +6,14 @@ const gameController = (function () {
     croupierMustPlayPoints = 16;
     // players = [0, 1];
 
+    const card = {
+        id: 'AA'
+    };
+
     const data = {
         totalCash: startCash,
         bet: 0,
-        allCards: [],
+        allCards: [card],
     };
 
     class Card {
@@ -21,7 +25,7 @@ const gameController = (function () {
         }
 
         checkAce() {
-            if (this.figure === "ace") {
+            if (this.figure === "Ace") {
                 return (this.isAce = true);
             }
         }
@@ -33,7 +37,7 @@ const gameController = (function () {
             this.allCards = [];
             this.totalPoints; // wymysleć jak to ma działać!! Ma sumować punkty kart z allCards
         }
-    }
+    };
 
     return {
         updateData: (value, type) => (data[type] = parseInt(value)),
@@ -47,35 +51,48 @@ const gameController = (function () {
             const croupier = new Player("croupier");
         },
 
-        createCard: () => {
-            console.log("tworzenie karty");
-            generateCardRank();
-            //   getCardRank();
-            //   generateCardSuit();
-            //   createCardID();
-            //   uniqueID(); //stworzyć wszystkie powyższe funkcje
-        },
-
-        getRandomInt(min, max) {
+        getRandomInt: (min, max) => {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
 
-        generateCardRank: () => getRandomInt(2, 14),
-
-        getCardRank: () => {
+        generateCardRank: (num) => {
             const cardData = [];
-            const rank = generateCardRank();
-            if (rank <= 10) {
-                cardData.push(rank);
-                cardData.push(rank);
-            } else if (rank === 11) {
-                cardData.push("jack");
-                cardData.push(rank); //// wymysleć lepszą funkcję, ktora generuje kartę
-            }
+            if (num <= 10) {
+                cardData.push(num.toString());
+                cardData.push(num);
+            } else {
+                switch (num) {
+                    case 11:
+                        cardData.push('Jack');
+                        cardData.push(10);
+                        break;
+                    case 12:
+                        cardData.push('Queen');
+                        cardData.push(10);
+                        break;
+                    case 13:
+                        cardData.push('King');
+                        cardData.push(10);
+                        break;
+                    case 14:
+                        cardData.push('Ace');
+                        cardData.push(11);
+                        break;
+                }
+            };
+            return cardData;
         },
+
+        generateCardSuit: (num) => {
+            const arrOfSuits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+            return arrOfSuits[num];
+        },
+
+        createCardID: (cardRank, cardSuit) => cardRank.substring(0, 1).concat(cardSuit.substring(0, 1)),
     };
+
 })();
 
 //UI controller
@@ -139,43 +156,31 @@ const UIController = (function () {
 
 const controller = (function (gameCtrl, UICtrl) {
     const DOM = UICtrl.getDOMstrings();
+    const currentData = gameCtrl.getData();
 
     //Setup event listeners for bets
     const setupBetsEventListeners = () => {
-        document
-            .querySelector(DOM.betInput)
-            .addEventListener("keyup", UICtrl.insertBet);
-        document
-            .querySelector(DOM.betInput)
-            .addEventListener("paste", UICtrl.preventPaste);
-        document
-            .querySelector(DOM.allInBtn)
-            .addEventListener("click", UICtrl.addAllIn);
+        document.querySelector(DOM.betInput).addEventListener("keyup", UICtrl.insertBet);
+        document.querySelector(DOM.betInput).addEventListener("paste", UICtrl.preventPaste);
+        document.querySelector(DOM.allInBtn).addEventListener("click", UICtrl.addAllIn);
         document.querySelector(DOM.acceptBtn).addEventListener("click", accept);
     };
 
     //Remove event listeners for bets
 
     const removeBetsEventListener = () => {
-        document
-            .querySelector(DOM.betInput)
-            .removeEventListener("keyup", UICtrl.insertBet);
-        document
-            .querySelector(DOM.betInput)
-            .removeEventListener("paste", UICtrl.preventPaste);
-        document
-            .querySelector(DOM.allInBtn)
-            .removeEventListener("click", UICtrl.addAllIn);
+        document.querySelector(DOM.betInput).removeEventListener("keyup", UICtrl.insertBet);
+        document.querySelector(DOM.betInput).removeEventListener("paste", UICtrl.preventPaste);
+        document.querySelector(DOM.allInBtn).removeEventListener("click", UICtrl.addAllIn);
         document.querySelector(DOM.acceptBtn).removeEventListener("click", accept);
     };
 
     //accept bet
-    accept = () => {
+    const accept = () => {
         //1. get current bet value
         const value = UICtrl.returnBet();
         //2. Update bet data
         gameCtrl.updateData(value, "bet");
-        const currentData = gameCtrl.getData();
 
         if (currentData.bet <= currentData.totalCash && currentData.bet > 0) {
             //update player total cash
@@ -195,10 +200,53 @@ const controller = (function (gameCtrl, UICtrl) {
         }
     };
 
+    const cardRankGenerator = () => {
+        const randNum = gameCtrl.getRandomInt(2, 14);
+        console.log(`wygenerowany nr: ${randNum}`);
+        //pass random card number to generate card rank
+        const cardRankParams = gameCtrl.generateCardRank(randNum);
+        console.log(cardRankParams);
+        return cardRankParams;
+
+    };
+
+    const cardSuitGenerator = () => {
+        const randNum = gameCtrl.getRandomInt(0, 3);
+        const cardSuit = gameCtrl.generateCardSuit(randNum);
+        console.log(`wygenerowany kolor karty to: ${cardSuit}`);
+        return cardSuit;
+    };
+
+    const isUniqueID = (cardID) => {
+        console.log('inside isUniqueID fn')
+        console.log(currentData.allCards)
+        if (currentData.allCards.some(value => value.id === cardID)) {
+            createCard();
+        } else {
+            //stworzyć instancję karty oraz pushnąć ja do odpowiedniego miejsca !!
+        }
+    };
+    // WAŻNE!! dodać, ze pierwsza osoba, to Player bo teraz nikt nie jest wybierany i nie dopisze sie do odpowiedniej instancji karty
+
+
+    const createCard = () => {
+        console.log("creating card");
+
+        //generate random card number
+        const [newCardRank, newcardValue] = cardRankGenerator();
+        //generate card suit
+        const newCardSuit = cardSuitGenerator();
+        //Create card ID
+        const ID = gameCtrl.createCardID(newCardRank, newCardSuit);
+        console.log(ID);
+        //check if card is unique
+        isUniqueID('AA');
+    };
+
     const startGame = () => {
         console.log("game has started");
         gameCtrl.createPlayers();
-        gameCtrl.createCard(); //dodać argument
+        createCard(); //dodać argument
     };
 
     setupBetsEventListeners();
