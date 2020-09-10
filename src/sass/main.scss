@@ -1,0 +1,15 @@
+@import "abstract/mixins";
+@import "abstract/variables";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/card";
+
+@import "components/bets";
+@import "components/btn";
+@import "components/logo";
+@import "components/points";
+@import "components/rules";
