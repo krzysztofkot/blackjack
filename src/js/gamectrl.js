@@ -19,6 +19,7 @@ const data = {
     bet: 0,
     allCards: [],
     persons: [],
+    maxCards: 8,
 };
 
 class Card {
@@ -38,21 +39,28 @@ class Player {
     constructor(name) {
         this.name = name;
         this.allCards = [];
-        this.totalPoints = 0; // wymysleć jak to ma działać!! Ma sumować punkty kart z allCards
-        this.totalPoints2 = 0; // dodać tu wersje z asami tylko jak to zrobić.
+        this.totalPoints = []; // wymysleć jak to ma działać!! Ma sumować punkty kart z allCards.
         this.totalAces = 0;
     };
 
     countPoints() {
-        console.log(this);
-        this.totalPoints = this.allCards.reduce((prev, cur) => prev.value += cur.value);
-        console.log(this.totalPoints);
+        if (this.allCards.length > 1) {
+            const count = this.allCards.reduce((prev, cur) => {
+                console.log(this, prev.value, cur.value);
+                return prev.value + cur.value
+            });
+            this.totalPoints[0] = count;
+            if (this.totalAces) {
+                this.totalPoints[1] = count + 10;
+            }
+            return this.totalPoints;
+        }
+
         return this.totalPoints;
     };
 
     countAces() {
         const acesArr = this.allCards.filter((value) => value.isAce === true);
-        console.log(acesArr.length);
         this.totalAces = acesArr.length;
     };
 }
@@ -99,7 +107,7 @@ export const gameController = {
                     break;
                 case 14:
                     cardData.push("Ace");
-                    cardData.push(11);
+                    cardData.push(1);
                     break;
             }
         }

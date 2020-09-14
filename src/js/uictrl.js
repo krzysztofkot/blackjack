@@ -66,7 +66,12 @@ export const UIController = {
     },
 
     showPoints: (person, points) => {
-        document.querySelector(`.${person}__value--1`).innerText = points;
+        let n = 1;
+        for (const entry of points) {
+            document.querySelector(`.${person}__value--${n}`).innerText = entry;
+            n++;
+        }
+
     },
 
     getDOMstrings: () => DOMstrings,

@@ -1,5 +1,6 @@
 import { gameController } from './js/gamectrl';
 import { UIController } from './js/uictrl';
+import scss from './sass/main.scss';
 
 const controller = (gameCtrl, UICtrl) => {
     const DOM = UICtrl.getDOMstrings();
@@ -75,6 +76,15 @@ const controller = (gameCtrl, UICtrl) => {
     };
 
     const hitAction = () => {
+        const player = currentData.persons[curPlayer.currentPlayer];
+        console.log(curPlayer.player)
+        console.log(currentData.persons[curPlayer.currentPlayer])
+        console.log('max kart:' + currentData.maxCards)
+        if (player.allCards.length >= currentData.maxCards) {
+            console.log('przekroczono 8 kart')
+        } else {
+            createCard();
+        }
         console.log('click hit');
     };
 
@@ -102,7 +112,6 @@ const controller = (gameCtrl, UICtrl) => {
     };
 
     const isUniqueID = (cardID) => {
-        console.log(currentData.allCards);
         return currentData.allCards.every((value) => value !== cardID)
     }
     // currentData.allCards.every((value) => value !== cardID);
@@ -110,8 +119,10 @@ const controller = (gameCtrl, UICtrl) => {
     const useCard = (currentPlayer, figure, color, id, value) => {
         const card = gameCtrl.createCardInstance(figure, color, id, value);
         card.checkAce();
+        console.log(card.value, card.id)
         //add card to Person class
         currentData.persons[currentPlayer].allCards.push(card);
+        // console.log(currentData.persons[currentPlayer].allCards)
         //add card ID to data storage
         currentData.allCards.push(id);
     };
@@ -123,8 +134,9 @@ const controller = (gameCtrl, UICtrl) => {
 
     const generatePoints = () => {
         // count points
-        const points = currentData.persons[curPlayer.currentPlayer].countPoints();
         currentData.persons[curPlayer.currentPlayer].countAces(); //tylko tymczasowo, pomysleć gdzie to uzyc!
+        const points = currentData.persons[curPlayer.currentPlayer].countPoints();
+
 
         //show them in UI
         UICtrl.showPoints(curPlayer.player[curPlayer.currentPlayer], points);
@@ -133,20 +145,23 @@ const controller = (gameCtrl, UICtrl) => {
     const initCards = () => {
         //add 2 cards to player
         // console.log(activePlayer);
+        console.log('karta nr 1 dla player')
         createCard();
+        console.log('karta nr 2 dla player')
         createCard();
         //change to croupier
         curPlayer.changePlayer();
         //add 2 cards to croupier
+        console.log('karta nr 1 dla krupier')
         createCard();
+        console.log('karta nr 2 dla krupier')
         createCard();
         setBtnEventListener();
+
+
         // change to player
         curPlayer.changePlayer();
-        // const activePlayer = curPlayer.player[curPlayer.currentPlayer]
         console.log(curPlayer.player[curPlayer.currentPlayer]);
-        // CurrentData.persons[0].countPoints();//policzyć punkty gracza
-        generatePoints();
 
     };
 
@@ -167,6 +182,7 @@ const controller = (gameCtrl, UICtrl) => {
             : createCard();
         const newCard = returnCard(playerNum);
         UICtrl.generateCardUI(playerName, newCard);
+        generatePoints();
     };
 
     const startGame = () => {
