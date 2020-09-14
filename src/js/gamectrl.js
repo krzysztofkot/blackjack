@@ -44,19 +44,32 @@ class Player {
     };
 
     countPoints() {
-        if (this.allCards.length > 1) {
-            const count = this.allCards.reduce((prev, cur) => {
-                console.log(this, prev.value, cur.value);
-                return prev.value + cur.value
-            });
-            this.totalPoints[0] = count;
-            if (this.totalAces) {
-                this.totalPoints[1] = count + 10;
-            }
-            return this.totalPoints;
-        }
 
+        /// w przypadku pętli for of sumuje poprawnie wartości
+        let total = 0;
+        for (const values of this.allCards) {
+            total += values.value;
+        }
+        this.totalPoints[0] = total;
+        if (this.totalAces) {
+            this.totalPoints[1] = total + 10;
+        }
         return this.totalPoints;
+
+        // dla reduce funkcja zwraca undefined;
+
+        /* if (this.allCards.length > 1) {
+              const count = this.allCards.reduce((prev, cur) => {
+                  return prev.value + cur.value
+              });
+              this.totalPoints[0] = count;
+              if (this.totalAces) {
+                  this.totalPoints[1] = count + 10;
+              }
+              return this.totalPoints;
+          }
+  
+          return this.totalPoints; */
     };
 
     countAces() {
