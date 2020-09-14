@@ -5,9 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
-    "build": "webpack --config webpack.prod.js",
-    "watch:sass": "node-sass sass/main.scss css/style.css -w",
-    "devserver": "live-server"
+    "build": "webpack --config webpack.prod.js"
   },
   "browserslist": [
     "> .05%, last 5 versions"
