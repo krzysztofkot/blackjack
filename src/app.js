@@ -36,14 +36,25 @@ const controller = (gameCtrl, UICtrl) => {
         document.querySelector(DOM.acceptBtn).removeEventListener("click", accept);
     };
 
-    const setBtnEventListener = () => {
-        console.log('enable btn event listeners')
+    const setupBtnEventListener = () => {
         document.querySelector(DOM.standBtn).addEventListener('click', standAction);
         document.querySelector(DOM.hitBtn).addEventListener('click', hitAction);
         if (currentData.bet <= currentData.totalCash) {
             document.querySelector(DOM.doubleBtn).addEventListener('click', doubleAction);
         }
-    }
+    };
+
+    const removeBtnEventListener = () => {
+
+        document.querySelector(DOM.standBtn).removeEventListener('click', standAction);
+        document.querySelector(DOM.hitBtn).removeEventListener('click', hitAction);
+        document.querySelector(DOM.doubleBtn).removeEventListener('click', doubleAction);
+    };
+
+    const isBlackjack = () => {
+        return currentData.persons[0].totalPoints.filter(val => val === 21).length ? bjResults() : setupBtnEventListener();
+    };
+
 
     //accept bet
     const accept = () => {
@@ -55,8 +66,8 @@ const controller = (gameCtrl, UICtrl) => {
         if (currentData.bet <= currentData.totalCash && currentData.bet > 0) {
             //update player total cash
             gameCtrl.changeCash();
-            const updatedData = gameCtrl.getData();
-            UICtrl.printNewCash(updatedData.totalCash);
+            // const updatedData = gameCtrl.getData();
+            UICtrl.printNewCash(currentData.totalCash);
 
             //disable bet input
             UICtrl.inputToggleDisable();
@@ -70,26 +81,127 @@ const controller = (gameCtrl, UICtrl) => {
         }
     };
 
+    const bjResults = () => {
+        const playerResult = currentData.persons[0].totalPoints.filter(val => val === 21).length;
+        const croupierResult = currentData.persons[1].totalPoints.filter(val => val === 21).length;
+        if (playerResult !== croupierResult) {
+            updateStatistics('bjWin');
+        } else {
+            updateStatistics('draw');
+        }
+    };
+
+    const results = () => {
+
+        //get player results
+        const playerResults = currentData.persons[0].totalPoints.filter(val => val <= 21);
+        const playerMax = Math.max(...playerResults);
+        //get croupier results
+        const croupierResults = currentData.persons[1].totalPoints.filter(val => val <= 21);
+        const croupierMax = Math.max(...croupierResults);
+        //compare results
+        // if (currentData.persons[0].totalPoints)
+        if (!playerResults.length) {
+            updateStatistics('lost');
+        } else {
+            if (croupierResults.length) {
+                if (playerMax > croupierMax) {
+                    updateStatistics('normalWin');
+                } else if (playerMax === croupierMax) {
+                    updateStatistics('draw')
+                } else { updateStatistics('lost') };
+            } else {
+                updateStatistics('normalWin');
+            }
+        };
+    };
+
+    const updateStatistics = (result) => {
+        //open div with results
+        let baseWin;
+        switch (result) {
+            case 'draw':
+                baseWin = 1;
+                break;
+            case 'normalWin':
+                baseWin = 2;
+                break;
+            case 'bjWin':
+                baseWin = 3;
+                break;
+            case 'lost':
+                baseWin = 0;
+        }
+        const newCash = gameCtrl.updateCash(baseWin);
+        // Print results
+        UICtrl.printNewCash(newCash);
+        //change data
+    };
+
+    const croupierTurn = () => {
+        removeBtnEventListener();
+        curPlayer.changePlayer();
+        const player = currentData.persons[curPlayer.currentPlayer];
+        // rotate first card
+        //set points visible
+        // check if croupier has more than 8 cards or total card points more than 21
+
+        const loop = () => {
+            // store the interval id to clear in future
+            const intr = setInterval(() => {
+                if (player.allCards.length < currentData.maxCards && player.totalPoints.some(points => points <= currentData.croupierMustPlayPoints)) {
+                    createCard();
+
+                } else {
+                    clearInterval(intr);
+                    results();
+                };
+            }, 1000)
+        }
+        loop();
+    };
+
     const standAction = () => {
-        console.log('click stand');
+        croupierTurn();
 
     };
 
     const hitAction = () => {
         const player = currentData.persons[curPlayer.currentPlayer];
-        console.log(curPlayer.player)
-        console.log(currentData.persons[curPlayer.currentPlayer])
-        console.log('max kart:' + currentData.maxCards)
-        if (player.allCards.length >= currentData.maxCards) {
-            console.log('przekroczono 8 kart')
+        createCard();
+        // check if player has more than 21 points
+        if (player.totalPoints.every(points => points > 21)) {
+            results();
         } else {
-            createCard();
+            // check if player has more than 8 cards or total card points more or even: 21
+            if (player.allCards.length === currentData.maxCards || player.totalPoints.every(points => points >= 21)) {
+                croupierTurn();
+            };
         }
-        console.log('click hit');
+
     };
 
     const doubleAction = () => {
-        console.log('click double');
+        const player = currentData.persons[curPlayer.currentPlayer];
+        //get current bet
+        const value = UICtrl.returnBet();
+        // change current cash value
+        gameCtrl.changeCash();
+        //update UI of current cash
+        UICtrl.printNewCash(currentData.totalCash);
+        //update bet data
+        gameCtrl.updateData(value, "bet");
+        //update bet UI
+        UICtrl.updateBet(currentData.bet);
+        //create one card
+        createCard();
+        if (player.totalPoints.every(points => points > 21)) {
+            results();
+        } else {
+            //change player to croupier
+            croupierTurn();
+        };
+
     };
 
     const initPlayers = () => {
@@ -119,7 +231,7 @@ const controller = (gameCtrl, UICtrl) => {
     const useCard = (currentPlayer, figure, color, id, value) => {
         const card = gameCtrl.createCardInstance(figure, color, id, value);
         card.checkAce();
-        console.log(card.value, card.id)
+        // console.log(card.value, card.id)
         //add card to Person class
         currentData.persons[currentPlayer].allCards.push(card);
         // console.log(currentData.persons[currentPlayer].allCards)
@@ -142,27 +254,21 @@ const controller = (gameCtrl, UICtrl) => {
         UICtrl.showPoints(curPlayer.player[curPlayer.currentPlayer], points);
     };
 
+    const generate2Cards = () => {
+        createCard();
+        setTimeout(() => {
+            createCard();
+            curPlayer.changePlayer();
+        }, 500);
+    };
+
     const initCards = () => {
-        //add 2 cards to player
-        // console.log(activePlayer);
-        console.log('karta nr 1 dla player')
-        createCard();
-        console.log('karta nr 2 dla player')
-        createCard();
-        //change to croupier
-        curPlayer.changePlayer();
-        //add 2 cards to croupier
-        console.log('karta nr 1 dla krupier')
-        createCard();
-        console.log('karta nr 2 dla krupier')
-        createCard();
-        setBtnEventListener();
-
-
-        // change to player
-        curPlayer.changePlayer();
-        console.log(curPlayer.player[curPlayer.currentPlayer]);
-
+        //add 2 cards to the player
+        generate2Cards();
+        //add 2 cards to croupier with delay
+        setTimeout(generate2Cards, 1000);
+        //check if player has blackjack
+        setTimeout(isBlackjack, 2000);
     };
 
     const createCard = () => {
@@ -177,12 +283,14 @@ const controller = (gameCtrl, UICtrl) => {
         //check if card is unique
         const uniqueCard = isUniqueID(ID);
         //is card unique?
-        uniqueCard
-            ? useCard(playerNum, newCardRank, newCardSuit, ID, newCardValue)
-            : createCard();
-        const newCard = returnCard(playerNum);
-        UICtrl.generateCardUI(playerName, newCard);
-        generatePoints();
+        if (uniqueCard) {
+            useCard(playerNum, newCardRank, newCardSuit, ID, newCardValue);
+            const newCard = returnCard(playerNum);
+            UICtrl.generateCardUI(playerName, newCard);
+            generatePoints();
+        } else {
+            createCard();
+        };
     };
 
     const startGame = () => {

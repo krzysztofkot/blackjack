@@ -18,12 +18,9 @@ export const UIController = {
 
     insertBet: (e) => {
         const val = e.target.value;
-        const len = val.length;
 
-        if (val.includes(".") || val.includes(" ") || isNaN(val)) {
-            const newVal = val.slice(0, len - 1);
-            e.target.value = newVal; // poprawić aby wyświetlalo '' jesli NaN ===true
-        }
+        const newVal = val.replace(/\D/g, '').replace(/^[0]+/g, '');
+        e.target.value = newVal;
     },
 
     returnBet: () => DOMselectors.betInput.value,
@@ -42,9 +39,11 @@ export const UIController = {
         (DOMselectors.totalCash.innerText = updateCash),
 
     inputToggleDisable: () => {
-        DOMselectors.betInput.disabled === true
-            ? (DOMselectors.betInput.disabled = false)
-            : (DOMselectors.betInput.disabled = true);
+        DOMselectors.betInput.disabled === true ? (DOMselectors.betInput.disabled = false) : (DOMselectors.betInput.disabled = true);
+    },
+
+    updateBet: (newValue) => {
+        DOMselectors.betInput.value = 2 * newValue;
     },
 
     clearBetInput: () => {
@@ -53,16 +52,32 @@ export const UIController = {
     },
 
     generateCardUI: (playerName, obj) => {
-        const cardTemplate = `<div class="card card--1">
-                <div class="card__face card__face--front">
-                    <img src="./img/${obj.id}.png" alt="${obj.figure} of ${obj.color}" id="${obj.id}" class="card__picture" />
-                </div>
-                <div class="card__face card__face--back"></div>
-            </div>`;
+        const outerDiv = document.createElement('div');
+        outerDiv.classList.add('card', 'card--1');
+        const innerDivFront = document.createElement('div');
+        innerDivFront.classList.add('card__face', 'card__face--front');
+        const innerDivBack = document.createElement('div');
+        innerDivBack.classList.add('card__face', 'card__face--back');
+        const createImg = document.createElement('img');
+        createImg.src = `./img/${obj.id}.png`;
+        createImg.alt = `${obj.figure} of ${obj.color}`;
+        createImg.id = obj.id;
+        createImg.classList.add('card__picture');
+        innerDivFront.appendChild(createImg);
+        outerDiv.appendChild(innerDivFront);
+        outerDiv.appendChild(innerDivBack);
+        document.querySelector(`#${playerName}-cards`).appendChild(outerDiv);
+
+        // const cardTemplate = `<div class="card card--1">
+        //         <div class="card__face card__face--front">
+        //             <img src="./img/${obj.id}.png" alt="${obj.figure} of ${obj.color}" id="${obj.id}" class="card__picture" />
+        //         </div>
+        //         <div class="card__face card__face--back"></div>
+        //     </div>`;
         // console.log(cardTemplate);
-        document
-            .querySelector(`#${playerName}-cards`)
-            .insertAdjacentHTML("beforeend", cardTemplate);
+        // document
+        //     .querySelector(`#${playerName}-cards`)
+        //     .insertAdjacentHTML("beforeend", cardTemplate);
     },
 
     showPoints: (person, points) => {

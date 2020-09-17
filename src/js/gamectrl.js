@@ -1,16 +1,13 @@
 //game controller
 const startCash = 1000;
-const totalCards = 8;
-const croupierMustPlayPoints = 16;
+
 
 const activePlayer = {
     currentPlayer: 0,
     player: ["player", "croupier"], //for changing current player
 
     changePlayer() {
-        this.currentPlayer === 0
-            ? (this.currentPlayer = 1)
-            : (this.currentPlayer = 0);
+        this.currentPlayer === 0 ? (this.currentPlayer = 1) : (this.currentPlayer = 0);
     },
 };
 
@@ -20,6 +17,7 @@ const data = {
     allCards: [],
     persons: [],
     maxCards: 8,
+    croupierMustPlayPoints: 16
 };
 
 class Card {
@@ -85,7 +83,7 @@ export const gameController = {
 
     getPlayer: () => activePlayer,
 
-    changeCash: () => (data.totalCash -= data.bet),
+    changeCash: () => data.totalCash -= data.bet,
 
     createPlayers: () => {
         const person = new Player("player");
@@ -137,4 +135,6 @@ export const gameController = {
 
     createCardInstance: (figure, color, id, value) =>
         new Card(figure, color, id, value),
+
+    updateCash: (multiplier) => data.totalCash += multiplier * data.bet,
 };
