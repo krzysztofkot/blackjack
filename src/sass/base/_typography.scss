@@ -1,32 +1,51 @@
 .table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1;
+
+  @media only screen and (max-width: 750px) and (orientation: portrait) {
+    justify-content: space-between;
+  }
+
+  &__croupier,
+  &__player {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    flex: 1;
-
-    @media only screen and (max-width: 750px) and (orientation: portrait) {
-        justify-content: space-between;
-    }
-
-    &__croupier,
-    &__player {
-        position: relative;
-    }
+  }
 }
 
 .game-controller {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.3rem;
 
-    @media only screen and (orientation: portrait) {
-        flex-direction: column;
-        align-items: center;
-    }
+  @media only screen and (orientation: portrait) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
-    // @media only screen and(max-width: 850px) {  sprawdzić co to robiło
-    //     width: auto;
-    // }
+.highscores {
+  position: absolute;
+  display: flex;
+  padding: 2rem;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba($color-black, 0.8);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+  font-size: 5rem;
+  transform: scale(1);
+  transition: opacity 0.3s linear, transform 0.3s 0.3s linear;
 
+  @media only screen and (max-width: 750px) and (orientation: portrait) {
+    font-size: 4rem;
+  }
+
+  @media only screen and (max-width: 530px) and (orientation: portrait) {
+    font-size: 3rem;
+  }
 }
