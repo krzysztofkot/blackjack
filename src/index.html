@@ -11,44 +11,87 @@
   </head>
 
   <body>
+    <section class="popup" data-window="welcome">
+      <div class="popup__container">
+        <h1 class="text__title text__title--primary">
+          Welcome to the Blackjack game!
+        </h1>
+        <p class="text__paragraph text__paragraph--margin-bottom">
+          It's a simple game, where you need to get as close as you can to 21
+          points. If you don't know how to play, just hit
+          <span class="symbol">?</span> on the left.
+        </p>
+        <p class="text__paragraph text__paragraph--margin-bottom">
+          Good luck and I hope You'll enjoy my game.
+        </p>
+        <button class="bets__btn bets__btn--start" data-btn="start">
+          start game
+        </button>
+      </div>
+    </section>
+    <section class="popup display" data-window="play again">
+      <div class="popup__container popup__container--start-game">
+        <h1 class="text__title text__title--primary">Game over!</h1>
+        <p class="text__paragraph text__paragraph--margin-bottom">
+          It seems that you lost all your cash. Hit button below to start again!
+        </p>
+        <button class="bets__btn bets__btn--start" data-btn="start again">
+          start again
+        </button>
+      </div>
+    </section>
+    <section class="highscores display">
+      <p class="highscores__game-status">%%</p>
+    </section>
     <main class="table">
       <div class="table__croupier">
-        <div class="card__deck">
-          <div class="card card--rotated">
-            <div class="card__face card__face--back card--shadow"></div>
-          </div>
-        </div>
         <div class="points">
-          <div class="points__crupier">
-            <span class="points__value--1 croupier__value--1">x</span>
-            <span class="points__backslash">/</span
-            ><span class="points__value--2 croupier__value--2">x</span>
+          <div class="points__croupier">
+            <span class="points__value--1 croupier__value--1">21</span>
+            <span class="points__value--backslash croupier__value--backslash">
+              /
+            </span>
+            <span class="points__value--2 croupier__value--2">11</span>
           </div>
         </div>
         <div class="table__card-box" id="croupier-cards">
-          <!-- <div class="card card--rotated card--1 card--2 card--3 card--4 card--5 card--6 card--7 card--8">
-                    <div class="card__face card__face--front">
-                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
-                    </div>
-                    <div class="card__face card__face--back"></div>
-                </div> -->
+          <div class="card card--2 card--rotated">
+            <div class="card__face card__face--front">
+              <img src="./img/AH.png" alt="" id="AH" class="card__picture" />
+            </div>
+            <div class="card__face card__face--back"></div>
+          </div>
+          <div class="card card--2 card--rotated">
+            <div class="card__face card__face--front">
+              <img src="./img/1H.png" alt="" id="1H" class="card__picture" />
+            </div>
+            <div class="card__face card__face--back"></div>
+          </div>
         </div>
       </div>
       <div class="table__player">
         <div class="points">
           <div class="points__player">
-            <span class="points__value--1 player__value--1">x</span>
-            <span class="points__backslash">/</span
-            ><span class="points__value--2 player__value--2">x</span>
+            <span class="points__value--1 player__value--1">21</span>
+            <span class="points__value--backslash player__value--backslash">
+              /
+            </span>
+            <span class="points__value--2 player__value--2">11</span>
           </div>
         </div>
         <div class="table__card-box" id="player-cards">
-          <!-- <div class="card card--rotated card--1 card--2 card--3 card--4 card--5 card--6 card--7 card--8">
-                    <div class="card__face card__face--front">
-                        <img src="./img/9H.png" alt="" id="3H" class="card__picture" />
-                    </div>
-                    <div class="card__face card__face--back"></div>
-                </div> -->
+          <div class="card card--2 card--rotated">
+            <div class="card__face card__face--front">
+              <img src="./img/AS.png" alt="" id="AS" class="card__picture" />
+            </div>
+            <div class="card__face card__face--back"></div>
+          </div>
+          <div class="card card--2 card--rotated">
+            <div class="card__face card__face--front">
+              <img src="./img/1S.png" alt="" id="1S" class="card__picture" />
+            </div>
+            <div class="card__face card__face--back"></div>
+          </div>
         </div>
       </div>
     </main>
@@ -57,7 +100,7 @@
         <div class="bets__form">
           <div class="bets__current-box">
             <p class="bets__desc">current cash:</p>
-            <span class="bets__value">1000</span>
+            <span class="bets__value">0</span>
           </div>
           <div class="bets__current-box">
             <label for="bets" class="bets__desc">current bet:</label
@@ -67,16 +110,30 @@
               autocomplete="off"
               id="bets"
               class="bets__value bets__value--input"
+              disabled
             />
           </div>
           <div class="bets__btn-box">
-            <button class="bets__btn bets__btn--accept">accept</button>
-            <button class="bets__btn bets__btn--all-in">all in</button>
+            <button
+              class="bets__btn bets__btn--accept gray-background"
+              data-bet="bet"
+            >
+              accept
+            </button>
+            <button
+              class="bets__btn bets__btn--all-in gray-background"
+              data-bet="bet"
+            >
+              all in
+            </button>
           </div>
         </div>
       </div>
       <div class="action">
-        <button class="action__btn action__btn--stand">
+        <button
+          class="action__btn action__btn--stand u-btn--active"
+          data-btn="btn"
+        >
           <svg
             version="1.1"
             id="Capa_1"
@@ -117,7 +174,10 @@
 
           <p class="btn__txt">stand</p>
         </button>
-        <button class="action__btn action__btn--hit">
+        <button
+          class="action__btn action__btn--hit u-btn--active"
+          data-btn="btn"
+        >
           <svg
             version="1.1"
             id="Capa_1"
@@ -156,7 +216,10 @@
           </svg>
           <p class="btn__txt">hit</p>
         </button>
-        <button class="action__btn action__btn--double">
+        <button
+          class="action__btn action__btn--double u-btn--active"
+          data-btn="btn"
+        >
           <svg
             version="1.1"
             id="Capa_1"
@@ -268,7 +331,7 @@
           <path
             id="my_path-3"
             class="line"
-            d="M 0 150 C 100 240, 540 240, 640 150"
+            d="M 0 170 C 100 260, 540 260, 640 170"
           />
 
           <text class="text--1" x="52.5%">
@@ -295,7 +358,7 @@
               xmlns:xlink="http://www.w3.org/1999/xlink"
               xlink:href="#my_path-3"
             >
-              try your luck
+              dealer must draw to 16
             </textPath>
           </text>
         </svg>
@@ -307,82 +370,96 @@
       <label for="rules" class="rules__btn">&nbsp;</label>
 
       <div class="rules__container">
-        <h1 class="rules__title rules__title--primary">blackjack rules</h1>
-        <h2 class="rules__title rules__title--secondary">card values</h2>
-        <p class="rules__paragraph">
-          Cards 2-10 are worth the value of the number on the face of the card.
-          Numbered cards are worth the corresponding number indicated on the
-          card. Face cards (those with pictures on them) are worth 10, except
-          for the Ace, which is worth 1 or 11. A picture combined with an Ace is
-          Blackjack (a value of 21).
-        </p>
-        <h2 class="rules__title rules__title--secondary">stand/hit/double</h2>
-        <p class="rules__paragraph">
-          Stand means that player is not asking for another cards and it's
-          croupier turn.
-        </p>
-        <p class="rules__paragraph">
-          Hit means that player is asking for another card (one at the time) to
-          get closer to 21. Maximum cards that player can get is 8.
-        </p>
-        <p class="rules__paragraph">
-          Double means that player is doubling his bet and after that he can get
-          only one more card. When lost, player losses his double bet.
-        </p>
-        <h2 class="rules__title rules__title--secondary">betting</h2>
-        <p class="rules__paragraph">
-          Before the game begins, player must place a bet.
-        </p>
-        <p class="rules__paragraph">
-          The most important blackjack rule is simple: beat the croupier’s hand
-          without going over 21. If you get 21 points exactly on the deal, that
-          is called a “blackjack.” When you’re dealt a blackjack 21, pay out is
-          2:1.
-        </p>
-        <h2 class="rules__title rules__title--secondary">
-          winning and loosing
-        </h2>
-        <p class="rules__paragraph">
-          When player gets blackjack he immidiately wins 2:1 his bet, if player
-          has more than 21, croupier won. If noone has blackjack, at the end of
-          a game player's and croupier's cards are compared and wins person with
-          higher value or croupier pays back bet if there s a draw.
-        </p>
-        <h2 class="rules__title rules__title--secondary">how to play</h2>
-        <p class="rules__paragraph">
-          First of all, make your bet(by clicking character plus and minus ),
-          then accept it. All in means that you are betting all cash that you
-          have.
-        </p>
-        <p class="rules__paragraph">
-          After getting your cards you have to choose if you are taking another
-          card(hit button), checking your cards against croupier(by hitting
-          stand) or asking doubling your bet and taking just one more
-          card(double button).
-        </p>
-        <p class="rules__paragraph">
-          Now it's croupier turn. Croupier has some rules that he needs to
-          follow. Croupier must take another card when has less than 16 or stand
-          when got 17 or more.
-        </p>
-        <p class="rules__paragraph">
-          Winner is person which is closer to 21 or got blackjack.
-        </p>
-        <h2 class="rules__title rules__title--secondary">
-          rules in the nutshell
-        </h2>
-        <p class="rules__paragraph">Each person can get maximum 8 cards.</p>
-        <p class="rules__paragraph">
-          If player has 21, he immidiately wins 2:1 his bet.
-        </p>
-        <p class="rules__paragraph">
-          If player has more than 21, croupier immidiately wins.
-        </p>
-        <p class="rules__paragraph">
-          Croupier must take another card when has less than 16 or stand when
-          got 17 or more.
-        </p>
-        <p class="rules__paragraph">Normal pay out: 1 to 1.</p>
+        <h2 class="text__title text__title--secondary">blackjack rules</h2>
+        <div class="rules__page rules__page--active" data-page="1">
+          <article class="rules__article">
+            <h3 class="text__title text__title--tertiary">card values</h3>
+            <p class="text__paragraph">
+              Cards 2-10 are worth the value of the number on the face of the
+              card. Numbered cards are worth the corresponding number indicated
+              on the card. Face cards (those with pictures on them) are worth
+              10, except for the Ace, which is worth 1 or 11. A picture combined
+              with an Ace is Blackjack (a value of 21).
+            </p>
+          </article>
+          <!-- <article class="rules__article">
+          <h3 class="text__title text__title--tertiary">stand/hit/double</h3>
+            <p class="text__paragraph">
+              Stand means that player is not asking for another cards and it's
+              croupier turn.
+            </p>
+            <p class="text__paragraph">
+              Hit means that player is asking for another card (one at the time)
+              to get closer to 21. Maximum cards that player can get is 8.
+            </p>
+            <p class="text__paragraph">
+              Double means that player is doubling his bet and after that he can
+              get only one more card. When lost, player losses his double bet.
+            </p>
+          </article> -->
+          <article class="rules__article">
+            <h3 class="text__title text__title--tertiary">betting</h3>
+            <p class="text__paragraph">
+              Before the game begins, player must place a bet.
+            </p>
+            <p class="text__paragraph">
+              The most important blackjack rule is simple: beat the croupier’s
+              hand without going over 21. If you get 21 points exactly on the
+              deal, that is called a “blackjack.” When you’re dealt a blackjack
+              21, pay out is 2:1.
+            </p>
+          </article>
+        </div>
+        <div class="rules__page" data-page="2">
+          <article class="rules__article">
+            <h3 class="text__title text__title--tertiary">
+              winning and loosing
+            </h3>
+            <p class="text__paragraph">
+              When player gets blackjack (21 on hand)croupier checks his cards,
+              if croupier doesn't have 21, player immidiately wins 2:1 bet, if
+              player has more than 21, croupier won. If noone has blackjack, at
+              the end of a game player's and croupier's cards are compared and
+              wins person with higher value or croupier pays back bet if there
+              is a draw.
+            </p>
+          </article>
+          <article class="rules__article">
+            <h3 class="text__title text__title--tertiary">how to play</h3>
+            <p class="text__paragraph">
+              First of all, make your bet, then accept it. All in means that you
+              are betting all cash that you have.
+            </p>
+            <p class="text__paragraph">
+              After getting your cards you have to choose if you are taking
+              another card(hit button), checking your cards against croupier(by
+              hitting stand) or asking to double your bet and take just one more
+              card(double button).
+            </p>
+            <p class="text__paragraph">
+              Now it's croupier turn. Croupier has some rules that he needs to
+              follow. Croupier must take another card when has less than 16 or
+              stand when got 17 or more.
+            </p>
+            <p class="text__paragraph">
+              Winner is person which is closer to 21 or got blackjack.
+            </p>
+          </article>
+        </div>
+        <div class="rules__btns">
+          <button
+            class="rules__pagination rules__pagination--prev display"
+            data-btn="prev"
+          >
+            <<
+          </button>
+          <button
+            class="rules__pagination rules__pagination--next"
+            data-btn="next"
+          >
+            >>
+          </button>
+        </div>
       </div>
     </div>
     <!-- <script type="module" src="js/index.js"></script> -->
