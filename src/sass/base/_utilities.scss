@@ -1,76 +1,43 @@
-// @media only screen and (orientation: portrait) {
-//     //  and(orientation: portrait) 
+.gray-background {
+  background-color: $btn-color-2 !important;
+  color: $btn-color-1 !important;
+  opacity: 1;
+  cursor: auto !important   ;
+}
 
-//     // .table__card-box {
-//     //     width: calc(var(--card-height) * 0.65533 * 3) !important;
+.display {
+  opacity: 0 !important;
+  transform: scale(0) !important;
+}
 
-//     // }
+.symbol {
+  font-weight: bold;
+  display: inline-block;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 2px solid $color-white;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+}
 
-//     .card--1 {
-//         &:not(:first-child) {
-//             margin-left: -0rem;
-//         }
-//     }
+.u-btn--active {
+  background-color: $color-lightblue !important;
+  cursor: auto !important   ;
 
-//     .card--2 {
-//         &:not(:first-child) {
-//             margin-left: 0rem;
-//         }
-//     }
+  &:active {
+    background-color: $color-lightblue !important;
+  }
 
-//     .card--3 {
-//         &:not(:first-child) {
-//             margin-left: 0rem;
-//         }
-//     }
+  &:active .icon,
+  .btn__txt {
+    fill: $color-lightblue !important;
+  }
 
-//     .card--4 {
-//         &:not(:first-child) {
-//             margin-left: -4.38rem;
-//         }
-//     }
+  &:active .btn__txt {
+    color: $color-lightblue !important;
+  }
 
-//     .card--5 {
-//         &:not(:first-child) {
-//             margin-left: -6.56rem;
-//         }
-//     }
-
-//     .card--6 {
-//         &:not(:first-child) {
-//             margin-left: -7.87rem;
-//         }
-//     }
-
-//     .card--7 {
-//         &:not(:first-child) {
-//             margin-left: -8.74rem;
-//         }
-//     }
-
-//     .card--8 {
-//         &:not(:first-child) {
-//             margin-left: -9.37rem;
-//         }
-
-//     }
-// }
-
-
-
-// /* dodać utilities dla portrait zakładając 2 pełnej szerokości karty a reszta analogicznie sie nakłada
-// dodatkowo zwężyć container z wszystkimi kartami aby na 280/320 px nie rozjezdzala sie strona
-
-// dodatkowo dla portrait powiekszyc bets i btn na dole
-
-// poprawic wielkości dla big screen oraz ipad pro w obu orientacjach
-
-// opisy w zasadach gry zrobić responsywne i lokalizacja przycisku
-
-// @media only screen and(max-width: 600px) and (orientation: portrait) {
-//     --card-height: 20rem;
-// }
-
-
-// */
-// // card--shrink-5 card--shrink-6 card--shrink-7 card--shrink-8 
+  &:active .btn__line {
+    stroke: $color-lightblue !important;
+  }
+}
