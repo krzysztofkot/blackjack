@@ -1,7 +1,0 @@
-###directories
-node_modules
-img/logo.svg
-excel_margins.ods
-debug.log
-package-lock.json
-dist
