@@ -1,23 +1,23 @@
 //game controller
 const startCash = 1000;
 
-
 const activePlayer = {
-    currentPlayer: 0,
+    playerId: 0,
     player: ["player", "croupier"], //for changing current player
 
     changePlayer() {
-        this.currentPlayer === 0 ? (this.currentPlayer = 1) : (this.currentPlayer = 0);
+        this.playerId === 0 ? (this.playerId = 1) : (this.playerId = 0);
     },
 };
 
 const data = {
-    totalCash: startCash,
+    totalCash: 0,
     bet: 0,
     allCards: [],
     persons: [],
     maxCards: 8,
-    croupierMustPlayPoints: 16
+    croupierMustPlayPoints: 16,
+    doubleBtnActive: false
 };
 
 class Card {
@@ -37,13 +37,11 @@ class Player {
     constructor(name) {
         this.name = name;
         this.allCards = [];
-        this.totalPoints = []; // wymysleć jak to ma działać!! Ma sumować punkty kart z allCards.
+        this.totalPoints = [];
         this.totalAces = 0;
     };
 
     countPoints() {
-
-        /// w przypadku pętli for of sumuje poprawnie wartości
         let total = 0;
         for (const values of this.allCards) {
             total += values.value;
@@ -53,21 +51,6 @@ class Player {
             this.totalPoints[1] = total + 10;
         }
         return this.totalPoints;
-
-        // dla reduce funkcja zwraca undefined;
-
-        /* if (this.allCards.length > 1) {
-              const count = this.allCards.reduce((prev, cur) => {
-                  return prev.value + cur.value
-              });
-              this.totalPoints[0] = count;
-              if (this.totalAces) {
-                  this.totalPoints[1] = count + 10;
-              }
-              return this.totalPoints;
-          }
-  
-          return this.totalPoints; */
     };
 
     countAces() {
@@ -79,7 +62,11 @@ class Player {
 export const gameController = {
     updateData: (value, type) => (data[type] = parseInt(value)),
 
+    setInitCash: () => data.totalCash = startCash,
+
     getData: () => data,
+
+    getStartCash: () => startCash,
 
     getPlayer: () => activePlayer,
 
@@ -136,5 +123,33 @@ export const gameController = {
     createCardInstance: (figure, color, id, value) =>
         new Card(figure, color, id, value),
 
+    doubleBet: () => {
+        data.bet *= 2;
+    },
+
+    countCashWon: (result) => {
+        let baseWin;
+        switch (result) {
+            case 'draw':
+                baseWin = 1;
+                break;
+            case 'win':
+                baseWin = 2;
+                break;
+            case 'Blackjack':
+                baseWin = 3;
+                break;
+            case 'lost':
+                baseWin = 0;
+        }
+        return baseWin;
+    },
+
     updateCash: (multiplier) => data.totalCash += multiplier * data.bet,
+
+    clearAllData: () => {
+        data.allCards = [];
+        data.bet = 0;
+        data.persons = [];
+    }
 };
