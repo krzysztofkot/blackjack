@@ -1,0 +1,43 @@
+//fix popup
+.popup {
+  z-index: 10;
+  background-color: rgba($color-black, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  position: absolute;
+  margin: 0 auto;
+  text-align: center;
+  transform: scale(1);
+  transition: opacity 0.3s linear, transform 0.3s 0.3s linear;
+
+  &__container {
+    background-image: linear-gradient(
+      to right bottom,
+      $bg-color-2 0%,
+      $bg-color-1 100%
+    );
+    box-shadow: insit $shadow-big;
+    border: 1px solid black;
+    padding: 2.5rem;
+    width: 50%;
+    max-width: 63rem;
+
+    @media only screen and(max-width: 1024px) {
+      width: 55%;
+      padding: 2rem;
+    }
+
+    @media only screen and(max-width: 750px) {
+      width: 65%;
+      padding: 1.5rem;
+    }
+    @media only screen and(max-width: 750px) and (orientation: portrait) {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  }
+}
