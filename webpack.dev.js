@@ -11,7 +11,7 @@ module.exports = merge(common, {
     devtool: 'inline-source-map',
     module: {
         rules: [{
-            test: /\.scss$/,
+            test: /\.s[ac]ss$/i,
             use: [
                 'style-loader',
                 'css-loader',

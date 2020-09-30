@@ -4,8 +4,6 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const webpack = require('webpack');
-// const autoprefixer = require("autoprefixer");
 
 module.exports = merge(common, {
     mode: 'production',
@@ -35,6 +33,17 @@ module.exports = merge(common, {
                 'css-loader',
                 'postcss-loader',
                 'sass-loader'],
-        },]
+        },
+        {
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"]
+                }
+            }
+        },
+        ]
     }
 });
