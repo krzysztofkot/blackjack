@@ -32,7 +32,7 @@ This project is a simple casino Blackjack  game where you play against croupier.
 
  - add insurance bet option like in real casino game
  - add split card
- -  - save current cash in local storage
+ - save current cash in local storage
  - add more players (up to 3)
 
 
