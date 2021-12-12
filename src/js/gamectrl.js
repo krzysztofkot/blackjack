@@ -29,7 +29,7 @@ class Card {
   }
 
   checkAce() {
-    this.figure === "Ace" ? (this.isAce = true) : (this.isAce = false);
+    this.figure === "Deuce" ? (this.isAce = true) : (this.isAce = false);
   }
 }
 

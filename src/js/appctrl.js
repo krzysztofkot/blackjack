@@ -1,7 +1,5 @@
 // import { gameController } from "./gamectrl";
 
-//TODO check AD cart why it's not rendering!!
-
 export default class Controller {
   constructor(game, UI) {
     this.gameCtrl = new game();
@@ -318,7 +316,7 @@ export default class Controller {
       if (player.totalPoints.every((points) => points > 21)) {
         this.curPlayer.changePlayer();
         this.removeBtnEventListener();
-        results();
+        this.results();
       } else {
         //change player to croupier
         this.standAction();
@@ -384,8 +382,6 @@ export default class Controller {
       this.curPlayer.changePlayer();
     }, 1000);
   }
-
-  //TODO Sprawdzic this w timeout!! problem z this. zle jest przekazywany w liniejce 391 i 393
 
   initCards() {
     //add 2 cards to the player
